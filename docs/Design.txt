@@ -1,0 +1,33 @@
+Architecture
+------------
+
+1. CE will be written in Python
+2. CE will follow REST API guidelines
+4. Application framework: Flask
+5. Data persistence: SQLite
+6. Object-relational mapping (ORM): SQLAlchemy
+7. Testing (functional): Python unittest, (end-to-end): Postman or curl
+8. Deployment: Heroku platform or Docker
+9. Version control system: git
+
+Milestones
+----------
+
+Stage 1. Design and develop prototype system to collect user input, calculate amount in another currency, return JSON string as response
+
+Stage 2. Allow CE to run in an infinite loop. Load currency quotes from external service. Add input validation methods and error handling. Add unit tests. 
+
+Stage 3. Implement currency quotes cache storage as Python data structures. Re-implement quote module as Python class Quote
+
+Stage 4. Implement Transaction class to support exchange transactions. Add SQLite database to store quotes and transactions. Implement object-relational mapping. Use SQLAlchemy to access database
+
+Stage 5. Design and implement REST API as Flask framework.
+
+Stage 6*. Run application on Heroku platform or Docker  
+ 
+* This stage is for extra  credit
+
+ 
+
+
+

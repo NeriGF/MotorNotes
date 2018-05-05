@@ -1,0 +1,23 @@
+Product Requirements Document (PRD)
+
+Goal
+----
+Design and implement Currency Exchange (CE) Software as a Service (SaaS).
+
+Users
+-----
+Small online businesses selling goods in international markets and required to handle prices in a variety of currencies
+Markets: USA, UK, Europe, Australia, Japan
+
+Use cases of CE API
+-------------------
+1. Provide currency conversion rates between 2 currencies from the countries list
+2. Provide  all available conversion rates
+3. Convert the value or quantity of one currency into the relative values or quantities of other currencies, store this transaction
+4. Display the transaction from case 3
+5. List all exchange transactions
+
+Availability
+------------
+Available 24x7 on the Internet
+ 
