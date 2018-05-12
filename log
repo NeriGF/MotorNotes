@@ -1,0 +1,6 @@
+2018-05-12 11:52:45.516137	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	Started
+2018-05-12 11:52:53.298972	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	DKK	JPY	123
+2018-05-12 11:52:53.299069	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	{"DKK_JPY:{"val":0.918918918918919}}
+2018-05-12 11:52:53.299111	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	0.918918918918919	113.03
+2018-05-12 11:52:53.299136	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	{ "success" : true, "error" : "", "source" : {"amount" : "123 ", "currency" : "DKK"}, "target" : {"amount" : "113.03 ", "currency" : "JPY"}}
+2018-05-12 11:52:53.299188	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	Ended

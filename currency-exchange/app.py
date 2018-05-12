@@ -2,15 +2,21 @@ import readline ### this module will prevent from writing input prompt to STDERR
 import resources.quote
 import resources.transaction
 
-from common.utils import log  
+from common.utils import log
 
          
 def request_parameters():
     """
         Returns: amount, currency_in, currency_out
-        Collects values from user input 
+        Collects values from user input
     """
-    pass
+    amount_prompt = 'Enter the amount to convert > '
+    amount = input(amount_prompt)
+    currency_from_prompt = 'Enter the currency code to convert from,  a 3-character string > '
+    currency_in = input(currency_from_prompt)
+    currency_to_prompt = 'Enter the currency code to convert to,  a 3-character string > '
+    currency_out = input(currency_to_prompt)
+    return (amount, currency_in, currency_out)
 
 def main_command_line():
     """
@@ -37,6 +43,8 @@ def main_command_line():
     ### convert transaction data to JSON format
     transaction_json = resources.transaction.to_json(amount, amount_out, currency_in, currency_out)
     log("{}".format(transaction_json))
+    
+    print(transaction_json) 
     
     log("Ended")
 

@@ -9,7 +9,7 @@ request_id = uuid.uuid4()
 myhost = os.uname()[1] ### not portable
 
 def log(message):
-    print ("{}\t{}\t{}\t{}\t{}\t{}" .format (datetime.datetime.today(),
+    print("{}\t{}\t{}\t{}\t{}\t{}" .format (datetime.datetime.today(),
                         SERVICE_NAME,
                         pid,
                         request_id,

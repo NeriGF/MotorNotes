@@ -6,7 +6,8 @@ def get_raw(currency_in, currency_out):
     Calculation is done based on ASSCI code of the first character in the currency string:
     val =  ord ( currency_in[0]) / ord (currency_out[0])
     """
-    pass
+    val = ord(currency_in[0])/ord(currency_out[0])
+    return val
 
 def to_json(currency_key, convertion_rate):
     """"
@@ -14,8 +15,5 @@ def to_json(currency_key, convertion_rate):
     '{"EUR_USD":{"val":convertion_rate}}'
     where EUR_USD = currency_key
     """
-    pass
-
-
-
-
+    json_str = '{"' + currency_key +":{\"val\":" + str(convertion_rate) +'}}'
+    return json_str

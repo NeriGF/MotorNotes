@@ -2,7 +2,8 @@ def exchange(amount_from, conversion_rate):
     """
     Returns: amount (a positive float with 2-digits precision)
     """
-    pass
+    amount_to = (float(amount_from) * conversion_rate)
+    return ("%.2f" % amount_to)
 
 def to_json(amount, amount_out, currency_in, currency_out):
     """
@@ -15,6 +16,8 @@ def to_json(amount, amount_out, currency_in, currency_out):
         currency_in is a string
         currency_out is a string
         amount is a positive float
-        amount is a positive float
+        amount_out is a positive float
     """
-    pass
+    source = '{"amount" : "' + str(amount) +' ", "currency" : "' + currency_in + '"}'
+    target = '{"amount" : "' + str(amount_out) +' ", "currency" : "' + currency_out + '"}'
+    return '{ "success" : true, "error" : "", "source" : ' + source + ', "target" : ' + target +'}'
