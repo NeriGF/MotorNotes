@@ -1,0 +1,5 @@
+2018-05-12 15:25:03.566096	currency-exchange	2157	6da36fb7-3e95-4067-aab7-fc631a775dc1	LAPIN.local	Started
+2018-05-12 15:25:08.251877	currency-exchange	2157	6da36fb7-3e95-4067-aab7-fc631a775dc1	LAPIN.local	USD	EUR	100
+2018-05-12 15:25:08.251959	currency-exchange	2157	6da36fb7-3e95-4067-aab7-fc631a775dc1	LAPIN.local	0	0.00
+2018-05-12 15:25:08.251990	currency-exchange	2157	6da36fb7-3e95-4067-aab7-fc631a775dc1	LAPIN.local	{ "success" : true, "error" : "Error to convert currency", "source" : {"amount" : "100 ", "currency" : "USD"}, "target" : {"amount" : "0.00 ", "currency" : "EUR"}}
+2018-05-12 15:25:12.955554	currency-exchange	2157	6da36fb7-3e95-4067-aab7-fc631a775dc1	LAPIN.local	Ended
