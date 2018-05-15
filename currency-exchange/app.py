@@ -6,7 +6,7 @@ from common.utils import log
 
 def request_parameters():
     '''
-    Returns: amount, currency_in, currency_out, convertion_rate, action
+    Returns: amount, currency_in, currency_out, conversion_rate, action
     Implements input loop
     Collects values from user input
     '''
@@ -19,11 +19,11 @@ def request_parameters():
     amount = 0
     currency_in = ''
     currency_out = ''
-    convertion_rate = 0.0
+    conversion_rate = 0.0
 
     log('amount={:.2f}, in={}, out={}, rate={}, action={}'\
-        .format(amount, currency_in, currency_out, convertion_rate, action))
-    return (amount, currency_in, currency_out, convertion_rate, action)
+        .format(amount, currency_in, currency_out, conversion_rate, action))
+    return (amount, currency_in, currency_out, conversion_rate, action)
 
 def menu():
     ''' Returns action menu to be displayed to the user'''
@@ -31,7 +31,7 @@ def menu():
         '''
         D Display available quotes [default]
         Q get Quote
-        S Save the new convertion rate
+        S Save the new conversion rate
         X Exchange amount into the new currency
         E Exit
         > '''
@@ -63,7 +63,7 @@ def main_command_line():
     ### log entry
     log('Started')
     while True:
-        (amount, currency_in, currency_out, convertion_rate, action) = request_parameters()
+        (amount, currency_in, currency_out, conversion_rate, action) = request_parameters()
 
         log('{}\t{}\t{}'.format(currency_in, currency_out, amount))
         currency_key = currency_in + '_' + currency_out
@@ -71,23 +71,23 @@ def main_command_line():
         if action == 'Q':
             #### 1. Get  currency quote given a currency key
             ### calculate exchange rate from currency_in to currency_out and log value as string and as JSON string
-            convertion_rate = resources.quote.get_raw(currency_key)
+            conversion_rate = resources.quote.get_raw(currency_key)
             ### convert quote data to JSON format
-            quote_json = resources.quote.to_json(currency_key, convertion_rate)
+            quote_json = resources.quote.to_json(currency_key, conversion_rate)
             log('{}'.format(quote_json))
             print(quote_json)
         elif action == 'X':
             ### 2. Exchange amount to the new currency
-            convertion_rate = resources.quote.get_raw(currency_key)
-            amount_out = resources.transaction.exchange(amount, convertion_rate)
-            log('{}\t{}'.format(convertion_rate, amount_out))
+            conversion_rate = resources.quote.get_raw(currency_key)
+            amount_out = resources.transaction.exchange(amount, conversion_rate)
+            log('{}\t{}'.format(conversion_rate, amount_out))
             ### convert transaction data to JSON format
             transaction_json = resources.transaction.to_json(amount, amount_out, currency_in, currency_out)
             log('{}'.format(transaction_json))
             print(transaction_json)
         elif action == 'S':
             ### 3. Save currency quote
-            quote_saved = resources.quote.put(currency_key, convertion_rate)
+            quote_saved = resources.quote.put(currency_key, conversion_rate)
         elif action == 'D':
             #### 4. Display list of all currency quotes
             quotes = resources.quote.get_all_quotes()

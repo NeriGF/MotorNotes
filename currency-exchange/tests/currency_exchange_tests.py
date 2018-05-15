@@ -8,7 +8,7 @@ class TestValidationMethods(unittest.TestCase):
     def test_is_currency(self):
         self.assertTrue(app.is_currency("EUR"))
 
-class TestConvertionMethods(unittest.TestCase):
+class TestConversionMethods(unittest.TestCase):
     def test_normalize(self):
         self.assertEqual(app.normalize('d'), 'D')
 
