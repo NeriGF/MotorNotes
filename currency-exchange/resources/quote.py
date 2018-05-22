@@ -13,13 +13,22 @@ def get_raw(currency_key):
     Uses exception handling to log possible errors
     Returns: conversion_rate
     '''
+    ### handle exceptions, extract conversion_rate from json string
     conversion_rate = 0.0
-    ### TODO handle exceptions, extract conversion_rate from json string
-    #data_source = urllib.request.urlopen(CURRENCY_QUOTE + currency_key)
-    #json = data_source.read().decode('utf-8')
-    #returned json format:
     #{"USD_EUR":{"val":0.836901}}
     #{"status":400,"error":"Invalid query format."}
+    try:
+        data_source = urllib.request.urlopen(CURRENCY_QUOTE + currency_key)
+        json = data_source.read().decode('utf-8')
+        log('server response: [{}]'.format(json))
+        result = json.find('val')
+        position = result + 5
+        substr = json[position:]    
+        conversion_rate = float(substr[0:-2])
+        ### save it (will not be really used for now)
+        put(currency_key, conversion_rate)
+    except Exception as e:
+        log(e)
     return conversion_rate
 
 def to_json(currency_key, conversion_rate):
@@ -33,11 +42,12 @@ def to_json(currency_key, conversion_rate):
 
 def put(currency_key, conversion_rate):
     ''' Adds quote to the quotes storage (quote_list) 
-    Returns: quote - json string '''
-    # TODO
-    pass
+    Returns: quote'''
+    quote = to_json(currency_key, conversion_rate)
+    quote_list.append(quote)
+    return quote
 
 def get_all_quotes():
     ''' Returns all stored quotes'''
-    # TODO
-    pass
+    return quote_list
+    

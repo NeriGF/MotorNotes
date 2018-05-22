@@ -8,9 +8,10 @@ class TestValidationMethods(unittest.TestCase):
     def test_is_currency(self):
         self.assertTrue(app.is_currency("EUR"))
 
-class TestConversionMethods(unittest.TestCase):
+class TestconversionMethods(unittest.TestCase):
     def test_normalize(self):
         self.assertEqual(app.normalize('d'), 'D')
+
 
 #### allows to run the module from command line and call all the methods
 if __name__ == '__main__':

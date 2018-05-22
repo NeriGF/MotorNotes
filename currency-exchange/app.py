@@ -11,15 +11,57 @@ def request_parameters():
     Collects values from user input
     '''
     print ('**** Welcome to Currency Converter App ****')
-    # TODO while loop until valid action is entered
-    action = ''
+    # while loop until valid action is entered
+    while True:
+      input_menu = menu()
+      try: reply = input('What do you want to do: ' + input_menu)
+      except:
+          action = 'E'
+          break
+      action = normalize(reply)
+      if action == '':
+          print('Invalid input <{}>'.format(reply))
+      else:
+          break
 
-    # TODO per action, add collection and validation of user input
-
+    # collect input per action, add collection and validation of user input
     amount = 0
     currency_in = ''
     currency_out = ''
     conversion_rate = 0.0
+
+    if action == 'D' or action == 'E':
+        pass
+    if action == 'Q' or action == 'S' or action == 'X':
+        while True:
+            currency_in = input('Currency from [USD]: ')
+            if currency_in == '': currency_in = 'USD'
+            if not is_currency(currency_in):
+                print('Invalid currency symbol <{}>'.format(currency_in))
+                continue
+            currency_out = input('Currency to [EUR]: ')
+            if currency_out == '': currency_out = 'EUR'
+            if not is_currency(currency_out):
+                print('Invalid currency symbol <{}>'.format(currency_out))
+                continue
+            break
+    if action == 'S':
+        while True:
+            conversion_rate = input('User-defined conversion rate: ')
+            if conversion_rate == '': continue
+            if not is_float(conversion_rate):
+                print('Invalid float value <{}>'.format(conversion_rate))
+                continue
+            break
+    if action == 'X':
+        while True:
+            amount = input('Amount to convert [0.0]: ')
+            if amount == '': amount = 0.0
+            if not is_float(amount):
+                print('Invalid float value <{}>'.format(amount))
+                continue
+            amount = float(amount)
+            break
 
     log('amount={:.2f}, in={}, out={}, rate={}, action={}'\
         .format(amount, currency_in, currency_out, conversion_rate, action))
@@ -40,11 +82,15 @@ def menu():
 def is_currency(currency):
     """ Validates that currency is one of the supported currencies:
     'USD', 'GBP', 'EUR', 'AUD', 'JPY' """
-    pass
+    return (currency in ['USD', 'GBP', 'EUR', 'AUD','JPY'])
 
 def is_float(string):
     ''' validates that the string can be converted to the float '''
-    pass
+    try:
+        float(string)
+    except ValueError:
+        return False
+    return True
 
 def normalize(action):
     """ Empty input defaults to action 'D'
@@ -53,7 +99,13 @@ def normalize(action):
     validates that the action is one of 'Q','S','D','E'
     Returns normalized action or empty string"""
 
-    pass
+    a = action.strip()
+    if (a == ""): a='D'
+    if (a[0].upper() in ['D','Q','S','X','E']):
+        return a[0].upper()
+    else:
+        return ''
+
 
 def main_command_line():
     '''

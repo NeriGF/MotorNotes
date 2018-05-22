@@ -19,8 +19,12 @@ def to_json(amount, amount_out, currency_in, currency_out):
         amount_out is a positive float
     '''
 
-    ### TODO add setting success or error:
-    
+    error = ''
+    success = 'true'
+    if amount_out == '0.00':
+        error = "Error to convert currency"
+        success = 'false'
     source = '{"amount" : "' + str(amount) +' ", "currency" : "' + currency_in + '"}'
     target = '{"amount" : "' + str(amount_out) +' ", "currency" : "' + currency_out + '"}'
-    return '{ "success" : true, "error" : false, "source" : ' + source + ', "target" : ' + target +'}'
+    return '{ "success" : ' + success + ', "error" : "'+ \
+        error +'", "source" : ' + source + ', "target" : ' + target +'}'

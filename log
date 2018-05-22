@@ -1,6 +1,34 @@
-2018-05-12 11:52:45.516137	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	Started
-2018-05-12 11:52:53.298972	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	DKK	JPY	123
-2018-05-12 11:52:53.299069	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	{"DKK_JPY:{"val":0.918918918918919}}
-2018-05-12 11:52:53.299111	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	0.918918918918919	113.03
-2018-05-12 11:52:53.299136	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	{ "success" : true, "error" : "", "source" : {"amount" : "123 ", "currency" : "DKK"}, "target" : {"amount" : "113.03 ", "currency" : "JPY"}}
-2018-05-12 11:52:53.299188	currency-exchange	95686	e1f65b82-c4bc-4438-89d6-39c2230c5bd3	LAPIN.local	Ended
+2018-05-14 16:09:35.110875	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	Started
+2018-05-14 16:09:45.043973	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=USD, out=EUR, rate=0.0, action=Q
+2018-05-14 16:09:45.044021	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	USD	EUR	0
+2018-05-14 16:09:45.287987	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	server response: [{"USD_EUR":{"val":0.8381}}]
+2018-05-14 16:09:45.288084	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	{"USD_EUR:{"val":0.8381}}
+2018-05-14 16:10:13.457414	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=GBP, out=EUR, rate=0.74, action=S
+2018-05-14 16:10:13.457482	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	GBP	EUR	0
+2018-05-14 16:10:16.449421	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=, out=, rate=0.0, action=D
+2018-05-14 16:10:16.449481	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local			0
+2018-05-14 16:10:32.945267	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=12.12, in=GBP, out=AUD, rate=0.0, action=X
+2018-05-14 16:10:32.945328	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	GBP	AUD	12.12
+2018-05-14 16:10:33.114358	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	server response: [{"GBP_AUD":{"val":1.801383}}]
+2018-05-14 16:10:33.114447	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	1.801383	21.83
+2018-05-14 16:10:33.114478	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	{ "success" : true, "error" : false, "source" : {"amount" : "12.12 ", "currency" : "GBP"}, "target" : {"amount" : "21.83 ", "currency" : "AUD"}}
+2018-05-14 16:10:46.184385	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=AUD, out=EUR, rate=0.0, action=Q
+2018-05-14 16:10:46.184434	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	AUD	EUR	0
+2018-05-14 16:10:46.349733	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	server response: [{"AUD_EUR":{"val":0.631002}}]
+2018-05-14 16:10:46.349809	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	{"AUD_EUR:{"val":0.631002}}
+2018-05-14 16:11:12.188267	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=109.99, in=AUD, out=GBP, rate=0.0, action=X
+2018-05-14 16:11:12.188316	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	AUD	GBP	109.99
+2018-05-14 16:11:12.357897	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	server response: [{"AUD_GBP":{"val":0.555217}}]
+2018-05-14 16:11:12.357967	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	0.555217	61.07
+2018-05-14 16:11:12.357988	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	{ "success" : true, "error" : false, "source" : {"amount" : "109.99 ", "currency" : "AUD"}, "target" : {"amount" : "61.07 ", "currency" : "GBP"}}
+2018-05-14 16:11:42.829524	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=EUR, out=AUD, rate=1.59, action=S
+2018-05-14 16:11:42.829592	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	EUR	AUD	0
+2018-05-14 16:11:44.996106	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=, out=, rate=0.0, action=D
+2018-05-14 16:11:44.996164	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local			0
+2018-05-14 16:12:11.478593	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=AUD, out=EUR, rate=0.012, action=S
+2018-05-14 16:12:11.478653	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	AUD	EUR	0
+2018-05-14 16:12:18.519933	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=, out=, rate=0.0, action=D
+2018-05-14 16:12:18.519989	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local			0
+2018-05-14 16:12:28.005550	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	amount=0.00, in=, out=, rate=0.0, action=E
+2018-05-14 16:12:28.005634	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local			0
+2018-05-14 16:12:28.005657	currency-exchange	37704	1cc51c0a-484d-4340-aee0-79db84b1c70d	LAPIN.local	Ended
