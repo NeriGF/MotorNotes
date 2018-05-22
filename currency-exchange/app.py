@@ -24,7 +24,6 @@ def request_parameters():
       else:
           break
 
-    # collect input per action, add collection and validation of user input
     amount = 0
     currency_in = ''
     currency_out = ''
@@ -106,7 +105,6 @@ def normalize(action):
     else:
         return ''
 
-
 def main_command_line():
     '''
     Calls method to collect input
@@ -123,26 +121,23 @@ def main_command_line():
         if action == 'Q':
             #### 1. Get  currency quote given a currency key
             ### calculate exchange rate from currency_in to currency_out and log value as string and as JSON string
-            conversion_rate = resources.quote.get_raw(currency_key)
-            ### convert quote data to JSON format
-            quote_json = resources.quote.to_json(currency_key, conversion_rate)
+            quote_json = resources.quote.get(currency_key)
             log('{}'.format(quote_json))
             print(quote_json)
         elif action == 'X':
             ### 2. Exchange amount to the new currency
-            conversion_rate = resources.quote.get_raw(currency_key)
-            amount_out = resources.transaction.exchange(amount, conversion_rate)
-            log('{}\t{}'.format(conversion_rate, amount_out))
-            ### convert transaction data to JSON format
-            transaction_json = resources.transaction.to_json(amount, amount_out, currency_in, currency_out)
+            transaction_json = resources.transaction.exchange(amount, currency_in, currency_out)
             log('{}'.format(transaction_json))
             print(transaction_json)
         elif action == 'S':
             ### 3. Save currency quote
-            quote_saved = resources.quote.put(currency_key, conversion_rate)
+            quote_json = resources.quote.put(currency_key, conversion_rate)
+            log('{}'.format(quote_json))
+            print(quote_json)
         elif action == 'D':
             #### 4. Display list of all currency quotes
             quotes = resources.quote.get_all_quotes()
+            log(quotes)
             print (quotes)
         elif action == 'E':
             #### 5. Exit

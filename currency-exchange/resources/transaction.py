@@ -1,9 +1,14 @@
-def exchange(amount_from, conversion_rate):
+import models.quote_model
+
+def exchange(amount, currency_in, currency_out):
     '''
-    Returns: amount (a positive float with 2-digits precision)
+    Returns: JSON  string outlined in to_json fuction
     '''
-    amount_to = (float(amount_from) * conversion_rate)
-    return ('%.2f' % amount_to)
+    currency_key = currency_in + '_' + currency_out
+    quote = models.quote_model.find_by_currency_key(currency_key)
+    conversion_rate = quote[currency_key]
+    amount_to = amount * conversion_rate
+    return to_json( ('%.2f' % amount),  ('%.2f' % amount_to), currency_key, currency_out)
 
 def to_json(amount, amount_out, currency_in, currency_out):
     '''
