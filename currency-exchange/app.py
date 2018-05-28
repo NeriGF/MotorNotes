@@ -51,6 +51,7 @@ def request_parameters():
             if not is_float(conversion_rate):
                 print('Invalid float value <{}>'.format(conversion_rate))
                 continue
+            conversion_rate = float(conversion_rate)
             break
     if action == 'X':
         while True:
