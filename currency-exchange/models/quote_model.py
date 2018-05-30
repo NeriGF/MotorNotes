@@ -9,7 +9,6 @@ quote_dict ={}
 
 currency_keys.insert(0, 'USD_USD')
 conversion_rates.insert(0,1.0)
-
 for i  in range(len(currency)):
     for j  in range(len(currency)):
         key = currency[i] + '_' + currency[j]
@@ -21,24 +20,34 @@ for i  in range(len(currency)):
         conversion_rates2 = conversion_rates[position2]
         quote_dict[key] = (conversion_rates2/conversion_rates1)
 
-def find_by_currency_key(currency_key):
-    ''' Returns: {currency_key: conversion_rate}'''
-    return {currency_key:quote_dict[currency_key]}
+class QuoteModel():
+    
+    def __init__(self, currency_key, conversion_rate):
+        ''' Object initialzer '''
+        self.currency_key = currency_key
+        self.conversion_rate = conversion_rate
 
-def save(currency_key, conversion_rate): 
-    ''' Saves currency passed data
-    Returns: {currency_key: conversion_rate}
-    '''
-    quote_dict[currency_key] = conversion_rate
-    return {currency_key:quote_dict[currency_key]}
+    def find_by_currency_key(currency_key):
+        ''' Returns: QuoteModel object'''
+        conversion_rate = quote_dict[currency_key]
+        return QuoteModel(currency_key, conversion_rate)
+    
+    def save(self): 
+        ''' Returns: QuoteModel object'''
+        quote_dict[self.currency_key] = self.conversion_rate
+        return QuoteModel(self.currency_key, self.conversion_rate)
 
-def find_all():
-    ''' Returns all available quotes as a list 
-    {currency_key1: conversion_rate1,currency_key2: conversion_rate2, ...}'''
-    return quote_dict
+    def find_all():
+        ''' Returns:  list of all stored QuoteModel objects '''
+        return [QuoteModel(k,v) for k,v in quote_dict.items()]
 
+    def delete (currency_key):
+        del quote_dict[currency_key]
+        
+
+   
 if __name__ == '__main__':    
-    print(json.dumps(find_all()))
+    for quote in QuoteModel.find_all():
+        print(json.dumps(vars(quote)))
    
     
-   

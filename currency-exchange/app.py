@@ -1,6 +1,6 @@
 import readline ### this module will prevent from writing input prompt to STDERR
-import resources.quote
-import resources.transaction
+from resources.quote import Quote,QuoteList
+from resources.transaction import Transaction, TransactionList, TotalIncome
 
 from common.utils import log
 
@@ -24,13 +24,14 @@ def request_parameters():
       else:
           break
 
+    # TODO per action, add collection and validation of user input
+
     amount = 0
     currency_in = ''
     currency_out = ''
     conversion_rate = 0.0
+    identifier = 0
 
-    if action == 'D' or action == 'E':
-        pass
     if action == 'Q' or action == 'S' or action == 'X':
         while True:
             currency_in = input('Currency from [USD]: ')
@@ -53,6 +54,15 @@ def request_parameters():
                 continue
             conversion_rate = float(conversion_rate)
             break
+    if action == 'O':
+        while True:
+            identifier = input('Idenifier: ')
+            if identifier == '': continue
+            if not identifier.isdigit():
+                print('Invalid value <{}>'.format(identifier))
+                continue
+            identifier = int(identifier)
+            break
     if action == 'X':
         while True:
             amount = input('Amount to convert [0.0]: ')
@@ -65,16 +75,19 @@ def request_parameters():
 
     log('amount={:.2f}, in={}, out={}, rate={}, action={}'\
         .format(amount, currency_in, currency_out, conversion_rate, action))
-    return (amount, currency_in, currency_out, conversion_rate, action)
+    return (amount, currency_in, currency_out, conversion_rate, action, identifier)
 
 def menu():
     ''' Returns action menu to be displayed to the user'''
     return (
         '''
         D Display available quotes [default]
-        Q get Quote
+        Q get quote
         S Save the new conversion rate
         X Exchange amount into the new currency
+        T Return total profit from all stored exchange transactions
+        A Display available transactions
+        O get transaction by Identifier
         E Exit
         > '''
 )
@@ -83,6 +96,7 @@ def is_currency(currency):
     """ Validates that currency is one of the supported currencies:
     'USD', 'GBP', 'EUR', 'AUD', 'JPY' """
     return (currency in ['USD', 'GBP', 'EUR', 'AUD','JPY'])
+#    pass
 
 def is_float(string):
     ''' validates that the string can be converted to the float '''
@@ -91,17 +105,18 @@ def is_float(string):
     except ValueError:
         return False
     return True
+#    pass
 
 def normalize(action):
     """ Empty input defaults to action 'D'
     allows usage of upper and low case characters
     keeps only the first character as an action
-    validates that the action is one of 'Q','S','D','E'
+    validates that the action is one of 'Q','S','D','E','T','A','O'
     Returns normalized action or empty string"""
 
     a = action.strip()
     if (a == ""): a='D'
-    if (a[0].upper() in ['D','Q','S','X','E']):
+    if (a[0].upper() in ['D','Q','S','X','E','T','A','O']):
         return a[0].upper()
     else:
         return ''
@@ -114,7 +129,7 @@ def main_command_line():
     ### log entry
     log('Started')
     while True:
-        (amount, currency_in, currency_out, conversion_rate, action) = request_parameters()
+        (amount, currency_in, currency_out, conversion_rate, action, identifier) = request_parameters()
 
         log('{}\t{}\t{}'.format(currency_in, currency_out, amount))
         currency_key = currency_in + '_' + currency_out
@@ -122,27 +137,42 @@ def main_command_line():
         if action == 'Q':
             #### 1. Get  currency quote given a currency key
             ### calculate exchange rate from currency_in to currency_out and log value as string and as JSON string
-            quote_json = resources.quote.get(currency_key)
+            quote_json = Quote.get(currency_key)
             log('{}'.format(quote_json))
             print(quote_json)
         elif action == 'X':
             ### 2. Exchange amount to the new currency
-            transaction_json = resources.transaction.exchange(amount, currency_in, currency_out)
+            transaction_json = TransactionList.post(amount, currency_in, currency_out)
             log('{}'.format(transaction_json))
             print(transaction_json)
         elif action == 'S':
             ### 3. Save currency quote
-            quote_json = resources.quote.put(currency_key, conversion_rate)
+            quote_json = Quote.put(currency_key, conversion_rate)
             log('{}'.format(quote_json))
             print(quote_json)
         elif action == 'D':
             #### 4. Display list of all currency quotes
-            quotes = resources.quote.get_all_quotes()
+            quotes = QuoteList.get()
             log(quotes)
             print (quotes)
         elif action == 'E':
             #### 5. Exit
             break
+        elif action == 'T':
+            ### 6. Return total profit from all stored exchange transactions
+            total_income = TotalIncome.get()
+            log('{}'.format(str(total_income)))
+            print("Total profit = " + str(total_income))
+        elif action == 'A':
+            #### 7. Display list of all Transactions
+            txs = TransactionList.get()
+            log(txs)
+            print (txs)
+        elif action == 'O':
+            #### 8. Display transaction by identifier
+            tx = Transaction.get(identifier)
+            log(tx)
+            print (tx)
 
     log('Ended')
 
