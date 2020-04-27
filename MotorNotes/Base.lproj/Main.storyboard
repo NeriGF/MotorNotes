@@ -734,11 +734,18 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h0Z-aS-Da4">
-                                        <rect key="frame" x="0.0" y="500" width="345" height="93"/>
+                                        <rect key="frame" x="0.0" y="500" width="345" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                         <color key="textColor" systemColor="systemRedColor" red="1" green="0.23137254900000001" blue="0.18823529410000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JS9-8w-Dpu">
+                                        <rect key="frame" x="0.0" y="535.5" width="345" height="57.5"/>
+                                        <state key="normal" title="Set this image?"/>
+                                        <connections>
+                                            <action selector="pulledImageTapped:" destination="9BB-3n-toH" eventType="touchUpInside" id="WIm-rr-kVi"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="0HY-Ev-95I" firstAttribute="height" secondItem="6lX-Qy-sYi" secondAttribute="height" id="IvR-FU-pXo"/>
@@ -765,6 +772,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Add Car" id="nWJ-7n-R1X"/>
                     <connections>
+                        <outlet property="ImageDownloaded" destination="OGy-Vx-Izn" id="F21-qq-Wmt"/>
                         <outlet property="carColorTextField" destination="TRh-Ip-Ixw" id="9Qk-ys-Dy8"/>
                         <outlet property="carImageView" destination="OGy-Vx-Izn" id="DkR-39-YkG"/>
                         <outlet property="carLicensePlateTextField" destination="fF4-mU-0E1" id="lrJ-OQ-Cak"/>

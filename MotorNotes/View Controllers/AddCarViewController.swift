@@ -9,8 +9,26 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseUI
 
-class AddCarViewController: UIViewController {
+class AddCarViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet weak var ImageDownloaded: UIImageView!
+    
+    @IBAction func pulledImageTapped(_ sender: Any) {
+        
+        let storage = Storage.storage()
+        let storageRef = storage.reference()
+        
+        let ref = storageRef.child("UploadPhotoOne")
+        ImageDownloaded.sd_setImage(with: ref)
+    }
+    
+    
+    
+    
+    
+    var imagePickerController = UIImagePickerController ()
     
     @IBOutlet weak var carNicknameTextField: UITextField!
     @IBOutlet weak var carImageView: UIImageView!
@@ -30,6 +48,9 @@ class AddCarViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        imagePickerController.delegate = self
+        
         
         viewControllerDesigns()
         
@@ -145,7 +166,9 @@ class AddCarViewController: UIViewController {
     
     // MARK: - Camera alert
     @IBAction func onCameraButton(_ sender: UITapGestureRecognizer) {
-        self.imagePicker.present(from: sender.view!)
+        //self.imagePicker.present(from: sender.view!)
+        self.imagePickerController.sourceType = .photoLibrary
+        self.present(self.imagePickerController, animated:  true, completion:  nil)
     }
 }
 
@@ -154,4 +177,36 @@ extension AddCarViewController: ImagePickerDelegate {
     func didSelect(image: UIImage?) {
         self.carImageView.image = image
     }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        if let url = info[UIImagePickerController.InfoKey.imageURL] as? URL {
+            print(url)
+            uploadToCloud(fileURL: url)
+        }
+        
+        imagePickerController.dismiss(animated: true, completion: nil)
+    }
+    func uploadToCloud(fileURL : URL) {
+          let storage = Storage.storage()
+          
+          let data = Data()
+          
+          let storageRef = storage.reference()
+          
+          let localFule = fileURL
+          
+          let photoRef = storageRef.child("UploadPhotoOne")
+          
+          let uploadTask = photoRef.putFile(from: localFule, metadata: nil) { (metadata, err) in
+              guard let metadata = metadata else {
+                  print(err?.localizedDescription)
+                  return
+              }
+              print("Photo Uploaded to database")
+              
+          }
+          
+          
+      }
 }

@@ -11,6 +11,7 @@ target 'MotorNotes' do
   pod 'Firebase/Core'
   pod 'Firebase/Storage'
   pod 'Firebase/Firestore'
+  pod 'FirebaseUI/Storage'
 
   target 'MotorNotesTests' do
     inherit! :search_paths
